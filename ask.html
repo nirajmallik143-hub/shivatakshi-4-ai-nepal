@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ask a coding or AI learning question in Nepali or English.">
+  <meta name="theme-color" content="#102b25">
+  <title>Ask a Question | Shivatakshi Code &amp; AI</title>
+  <style>
+    :root { color-scheme: light; --green: #102b25; --gold: #f1bd57; --ink: #17352d; --muted: #5c6e66; --line: #dfe9e2; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; padding: 2rem 1rem; display: grid; place-items: center; background: #f7f6f1; color: var(--ink); font: 16px/1.6 "Segoe UI", Arial, sans-serif; }
+    main { width: min(680px, 100%); background: white; border: 1px solid var(--line); border-radius: 20px; padding: clamp(1.25rem, 5vw, 2.5rem); box-shadow: 0 18px 48px #102b2518; }
+    .brand { display: inline-block; color: var(--green); font-weight: 800; text-decoration: none; }
+    h1 { margin: 1.5rem 0 .4rem; line-height: 1.2; }
+    .intro, .help { color: var(--muted); }
+    label { display: block; margin: 1.2rem 0 .35rem; font-weight: 700; }
+    select, textarea { width: 100%; padding: .8rem; border: 1px solid #b9cbc0; border-radius: 10px; color: var(--ink); font: inherit; }
+    textarea { min-height: 160px; resize: vertical; }
+    select:focus, textarea:focus, button:focus, a:focus { outline: 3px solid #dca342; outline-offset: 2px; }
+    button { margin-top: 1.2rem; padding: .85rem 1.2rem; border: 0; border-radius: 10px; background: var(--gold); color: var(--green); font: inherit; font-weight: 800; cursor: pointer; }
+    button:hover { background: #ffd477; }
+    .notice { margin-top: 1rem; padding: .9rem 1rem; border-radius: 10px; background: #eef7f0; }
+    .links { display: flex; flex-wrap: wrap; gap: .6rem 1.2rem; margin-top: 1.5rem; }
+    .links a { color: #1b634b; font-weight: 700; }
+    [lang="ne"] { margin-top: .2rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="brand" href="https://github.com/nirajmallik143-hub/shivatakshi-4-ai-nepal">&lt;/&gt; Shivatakshi Code &amp; AI</a>
+    <h1>Ask a learning question</h1>
+    <p class="intro">Ask about coding, AI, or a lesson. You can write in Nepali or English. Your question will be prepared as a GitHub issue so the learning community can respond.</p>
+    <p class="intro" lang="ne">कोडिङ, AI, वा पाठबारे प्रश्न सोध्नुहोस्। नेपाली वा अंग्रेजीमा लेख्न सक्नुहुन्छ। तपाईंको प्रश्न GitHub मा राखिनेछ, जहाँ सिकाइ समुदायले जवाफ दिन सक्छ।</p>
+
+    <form id="question-form">
+      <label for="topic">Topic / विषय</label>
+      <select id="topic" name="topic">
+        <option>Coding / कोडिङ</option>
+        <option>Artificial intelligence / कृत्रिम बुद्धिमत्ता</option>
+        <option>Computer basics / कम्प्युटरका आधारभूत कुरा</option>
+        <option>Other / अन्य</option>
+      </select>
+
+      <label for="question">Your question / तपाईंको प्रश्न</label>
+      <textarea id="question" name="question" required maxlength="4000" placeholder="For example: What is a variable in Python? / उदाहरण: Python मा variable भनेको के हो?"></textarea>
+
+      <p class="help">Please do not include passwords, phone numbers, addresses, or other private information. Your question will be public on GitHub.</p>
+      <p class="help" lang="ne">पासवर्ड, फोन नम्बर, ठेगाना वा अन्य निजी जानकारी नलेख्नुहोस्। GitHub मा तपाईंको प्रश्न सार्वजनिक हुनेछ।</p>
+      <button type="submit">Continue to GitHub / GitHub मा जानुहोस्</button>
+    </form>
+
+    <p class="notice">GitHub will open with your question filled in. Sign in if asked, review it, then select “Submit new issue.” A GitHub account is required to post.</p>
+    <div class="links">
+      <a href="https://github.com/nirajmallik143-hub/shivatakshi-4-ai-nepal/issues">See questions and answers / प्रश्न र जवाफ हेर्नुहोस्</a>
+      <a href="https://github.com/nirajmallik143-hub/shivatakshi-4-ai-nepal">Open the GitHub repository / GitHub रिपोजिटरी खोल्नुहोस्</a>
+    </div>
+  </main>
+  <script>
+    const form = document.getElementById("question-form");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const question = document.getElementById("question").value.trim();
+      if (!question) return;
+      const topic = document.getElementById("topic").value;
+      const title = `[Student question] ${topic}`;
+      const body = `## Student question\n\n${question}\n\n---\nSubmitted through the Shivatakshi Code & AI question page.`;
+      const url = new URL("https://github.com/nirajmallik143-hub/shivatakshi-4-ai-nepal/issues/new");
+      url.searchParams.set("title", title);
+      url.searchParams.set("body", body);
+      window.location.href = url.toString();
+    });
+  </script>
+</body>
+</html>
